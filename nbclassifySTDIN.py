@@ -116,7 +116,9 @@ def classifyInput(line, priors, likelihood, vocabSize, count):
         
         pword = math.log(float(priors[c]/priorsTotal))
         n = float(sum(likelihood[c].values()))
-        wordtoken = line.split(' ')
+        wordtoken1 = line.split(' ')
+        line1 = "prg:"+wordtoken1[0]+" "+"awa:"+wordtoken1[1]+" "+"qnt:"+wordtoken1[2]+" "+"vrb:"+wordtoken1[3]
+        wordtoken = line1.split(' ')
         for word in wordtoken:
             p = p * ((likelihood[c][word] + 1 ) / (n + vocabSize))
             pword = pword + math.log((likelihood[c][word] + 1 ) / (n + vocabSize))     
@@ -176,8 +178,9 @@ def main():
 			priors, likelihood, vocabSize = pickle.load(handle)
 	
 	if argsLength == 2:
-		print('Enter the data: ')
+		print('Enter the data: Program AWA QNT VRB ')
 		data = input()
+		
 		classifyInput(data, priors, likelihood, vocabSize, count) 
 	else:
 		lines = readTestingFile(testingFile)
