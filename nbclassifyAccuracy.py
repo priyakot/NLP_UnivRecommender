@@ -38,59 +38,8 @@ def classify(line, priors, likelihood, vocabSize, count):
             	pword = pword + math.log((likelihood[c][word] + 1 ) / (n + vocabSize))     
         		#prob[c] = float(pclass * pword)  
             prob[c] = pword   
+    print(max(prob, key=prob.get))
 
-   # print('prob', prob)
-   # print(max(prob), maxC[max(prob)])
-   #***** print(count,' key: ',max(prob, key=prob.get),'value: ',max(prob.values()))
-    #print(1,' ',max(prob, key=prob.get),' ',2,' ',sorted(prob, key=prob.get)[-2],' ',3,' ',sorted(prob, key=prob.get)[-3])
-    univ1 = max(prob, key=prob.get)
-    univ2 = sorted(prob, key=prob.get)[-2]
-    univ3 = sorted(prob, key=prob.get)[-3]
-    univ4 = sorted(prob, key=prob.get)[-4]
-    univ5 = sorted(prob, key=prob.get)[-5]
-    
-    univ1Out1 = univ1.split("_")[0]
-    univ1Out2 = univ1.split("_")[1]
-    univ2Out1 = univ2.split("_")[0]
-    univ2Out2 = univ2.split("_")[1]
-    univ3Out1 = univ3.split("_")[0]
-    univ3Out2 = univ3.split("_")[1]
-    univ4Out1 = univ4.split("_")[0]
-    univ4Out2 = univ4.split("_")[1]
-    univ5Out1 = univ5.split("_")[0]
-    univ5Out2 = univ5.split("_")[1]
-    
-    
-    print('Profile:','[%s]' % ', '.join(map(str, line)))
-    if univ1Out2 == "Admit":
-    	print("Safe University:     ",univ1Out1)
-    if univ1Out2 == "Reject":
-    	print("Ambitious University:",univ1Out1)
-    if univ2Out2 == "Admit" and univ1Out1 != univ2Out1:
-    	print("Safe University:     ",univ2Out1)
-    if univ2Out2 == "Reject" and univ1Out1 != univ2Out1:
-    	print("Ambitious University:",univ2Out1)
-    if univ3Out2 == "Admit" and univ3Out1 != univ1Out1 and univ2Out1 != univ3Out1:
-    	print("Safe University:     ",univ3Out1)
-    if univ3Out2 == "Reject" and univ3Out1 != univ1Out1 and univ2Out1 != univ3Out1:
-    	print("Ambitious University:",univ3Out1)
-    if univ4Out2 == "Admit" and univ4Out1 != univ1Out1 and univ4Out1 != univ2Out1 and univ4Out1 != univ3Out1:
-    	print("Safe University:     ",univ4Out1)
-    if univ4Out2 == "Reject" and univ4Out1 != univ1Out1 and univ4Out1 != univ2Out1 and univ4Out1 != univ3Out1:
-    	print("Ambitious University:",univ4Out1)
-    if univ5Out2 == "Admit" and univ5Out1 != univ1Out1 and univ5Out1 != univ2Out1 and univ5Out1 != univ3Out1 and univ5Out1 != univ4Out1:
-    	print("Safe University:     ",univ5Out1)
-    if univ5Out2 == "Reject" and univ5Out1 != univ1Out1 and univ5Out1 != univ2Out1 and univ5Out1 != univ3Out1 and univ5Out1 != univ4Out1:
-    	print("Ambitious University:",univ5Out1)
-    #import heapq
-	#res = heapq.nlargest(2, some_sequence)
-	#print res[1]
-   # x = max(maxC.keys(), key=operator.itemgetter(1))[0]
-   # print('correct max: ',x,maxC[x])
-   # max_index, max_value = max(enumerate(prob), key=operator.itemgetter(1))
-   # print('max class, max value : ',max_index,max_value)
-    
-   ##*** print('\n\n')
 
 
 def classifyInput(line, priors, likelihood, vocabSize, count):

@@ -31,6 +31,8 @@ def classify(line, priors, likelihood, vocabSize, count):
         
         pword = math.log(float(priors[c]/priorsTotal))
         n = float(sum(likelihood[c].values()))
+        print(n)
+        """
         for words in line:
             wordtoken = tokenize(words)
             for word in wordtoken:
@@ -38,7 +40,8 @@ def classify(line, priors, likelihood, vocabSize, count):
             	pword = pword + math.log((likelihood[c][word] + 1 ) / (n + vocabSize))     
         		#prob[c] = float(pclass * pword)  
             prob[c] = pword   
-
+		"""
+	
    # print('prob', prob)
    # print(max(prob), maxC[max(prob)])
    #***** print(count,' key: ',max(prob, key=prob.get),'value: ',max(prob.values()))
@@ -91,10 +94,10 @@ def main():
 		priors, likelihood, vocabSize = pickle.load(handle)
 
 	lines = readTestingFile(testingFile)
-
+	print("classes: ",len(priors), "likeli", likelihood.values())
 	for line in lines:
 	    count = count + 1
-	    classify(line, priors, likelihood, vocabSize, count)         
+	    classify(line, priors, likelihood, vocabSize, count)        
 	
    
 if __name__ == '__main__':
